@@ -1,8 +1,8 @@
 const User =require('../models/users');
 
-
+var chef=[];
 const getAllUsers = (req,res,next)=>{
-    const query={};
+    const query={'role':req.query.roleName};
     User.find(query,(err,users)=>{
         if(err){
             res.status(500).json({err});
@@ -11,16 +11,15 @@ const getAllUsers = (req,res,next)=>{
         res.json(users);
     });
 }
-
 const createUser = (req,res,next)=>{
-    const {body} = req
-User.create(body,(err,user)=>{
-    if(err){
-        res.status(500).json({err});
-        return;
-    }
-    res.json(user);
-});
+    let user = new User(req.body);
+    user.save()
+    .then(user => {
+        res.status(200).json({'user': 'user in added successfully'});
+      })
+      .catch(err => {
+      res.status(400).send("unable to save to database");
+      });
 }
 
 const getOneUser = (req,res,next)=>{

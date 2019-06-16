@@ -1,11 +1,22 @@
 const mongoose =require('mongoose');
 const Schema = mongoose.Schema;
 const adminschema = new Schema({
-cin: String,
-firstname : String,
-lastname : String,
-login : String,
-pwd : String
+
+ email: {
+ type: String
+},
+lastName: {
+type: String
+},
+firstName: {
+type: String
+},
+role: {
+type: String
+},
+pwd: {
+type: String
+},
 },{
     timestamps : true
 });

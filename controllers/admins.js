@@ -8,19 +8,19 @@ const getAllAdmins = (req,res,next)=>{
             res.status(500).json({err});
             return;
         }
-        res.json(users);
+        res.json(admins);
     });
 }
 
 const createAdmin = (req,res,next)=>{
-    const {body} = req
-Admin.create(body,(err,admin)=>{
-    if(err){
-        res.status(500).json({err});
-        return;
-    }
-    res.json(admin);
-});
+    let admin = new Admin(req.body);
+    admin.save()
+    .then(admin => {
+        res.status(200).json({'admin': 'admin in added successfully'});
+      })
+      .catch(err => {
+      res.status(400).send("unable to save to database");
+      });
 }
 
 const getOneAdmin= (req,res,next)=>{

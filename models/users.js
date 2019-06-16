@@ -1,11 +1,28 @@
 const mongoose =require('mongoose');
 const Schema = mongoose.Schema;
-const userschema = new Schema({
-cin: String,
-firstname : String,
-lastname : String,
-age : Number,
-role : String
+ userschema = new Schema({ 
+cin: {
+type: String
+},
+email: {
+    type: String
+},
+lastName: {
+type: String
+},
+firstName: {
+type: String
+},
+age: {
+type: String
+},
+role: {
+type: String
+},
+pwd: {
+type: String
+},
+
 },{
     timestamps : true
 });
